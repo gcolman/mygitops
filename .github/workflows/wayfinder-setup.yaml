@@ -13,12 +13,18 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ env.GIT_SHA }}
-      - name: Fetch Wayfinder CLI
+      - name: Download Wayfinder CLI
         run: |
           export LOGS="$(pwd)/logs"
           export JSON_FILE="$(pwd)/env.json"
           export BIN="$(pwd)/bin"
           source ./bin/get-wf-release.sh
+      - name: Logon to Wayfinder
+        run: |
+          export LOGS="$(pwd)/logs"
+          export JSON_FILE="$(pwd)/env.json"
+          export BIN="$(pwd)/bin"
+          source ./bin/wflogin.sh MYPROFILE $JSON_FILE
       - name: Save env file
         uses: actions/upload-artifact@v3
         with:
