@@ -6,6 +6,8 @@ jobs:
   install-wf-cli:
     runs-on: ubuntu-latest
     env:
+      VERSION: ${{ inputs.VERSION }}
+      RELEASE_BUCKET: ${{ inputs.RELEASE_BUCKET }}   
     steps:
       - name: Checkout
         uses: actions/checkout@v3
