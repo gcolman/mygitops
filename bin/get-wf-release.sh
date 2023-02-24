@@ -19,6 +19,7 @@ echo -n "JSON_FILE ${JSON_FILE} \n"
 RELEASE_BUCKET="$(cat ${JSON_FILE} | jq -r '.cli.bucket')"
 WF_VERSION="$(cat ${JSON_FILE} | jq -r '.cli.version')"
 
+echo " bucket ${RELEASE_BUCKET}"
 
 if [[ "${LOCAL_WF}" != "true" ]]; then
   mkdir -p "${BIN}" || true

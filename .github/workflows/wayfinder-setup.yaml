@@ -18,7 +18,7 @@ jobs:
           export LOGS="$(pwd)/logs"
           export JSON_FILE="$(pwd)/env.json"
           export BIN="$(pwd)/bin"
-          source ./bin/get-wf-release.sh
+          source ./bin/get-wf-release.sh $JSON_FILE
       - name: Logon to Wayfinder
         run: |
           export LOGS="$(pwd)/logs"
