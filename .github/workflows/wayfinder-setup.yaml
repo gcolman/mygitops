@@ -24,7 +24,8 @@ jobs:
           export LOGS="$(pwd)/logs"
           export JSON_FILE="$(pwd)/env.json"
           export BIN="$(pwd)/bin"
-          source ./bin/wflogin.sh MYPROFILE $JSON_FILE
+          export PROFILE="MYPROFILE"
+          source ./bin/wflogin.sh $PROFILE $JSON_FILE
       - name: Save env file
         uses: actions/upload-artifact@v3
         with:
