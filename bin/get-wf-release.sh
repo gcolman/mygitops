@@ -24,11 +24,13 @@ echo " bucket ${RELEASE_BUCKET}"
 if [[ "${LOCAL_WF}" != "true" ]]; then
   mkdir -p "${BIN}" || true
   export PATH=${BIN}:${PATH}
-  echo "Downloading WF version ${WF_VERSION} from ${RELEASE_BUCKET} to ${BIN}/wf"
+
   binname=wf-cli-linux-amd64
   if [ "$(uname)" == "Darwin" ]; then
     binname=wf-cli-darwin-amd64
   fi
+
+    echo "Downloading WF version ${WF_VERSION} from ${RELEASE_BUCKET} and ${binname} to ${BIN}/wf"
   curl --fail -sSL https://storage.googleapis.com/${RELEASE_BUCKET}/${WF_VERSION}/${binname}.tar.gz --output ${BIN}/wf.tar.gz
   tar -xzf ${BIN}/wf.tar.gz -C ${BIN}
   rm ${BIN}/wf.tar.gz
