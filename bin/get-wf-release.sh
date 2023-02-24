@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # To use this, *source* into a script in which BIN has been set to the folder you want WF to be
-# placed in.
+# placed in. https://storage.googleapis.com/wayfinder-dev-releases/v1.7.0-dev1/wf-cli-linux-amd64
 
 set -euo pipefail
 
@@ -11,6 +11,14 @@ WF_VERSION="${WF_VERSION:-"${VERSION:-"latest"}"}"
 RELEASE_BUCKET=wayfinder-releases
 LOCAL_WF=${LOCAL_WF:-"false"}
 BIN=${BIN:-$(pwd)/wfbin}
+
+
+JSON_FILE=$1
+echo -n "JSON_FILE ${JSON_FILE} \n"
+
+RELEASE_BUCKET="$(cat ${JSON_FILE} | jq -r '.cli.bucket')"
+WF_VERSION="$(cat ${JSON_FILE} | jq -r '.cli.version')"
+
 
 if [[ "${LOCAL_WF}" != "true" ]]; then
   mkdir -p "${BIN}" || true
