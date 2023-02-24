@@ -17,7 +17,7 @@ WF_ADMIN_PASS="$(cat ${JSON_FILE} | jq -r '.login.password')"
 echo -n "Attempting to log in to ${WF_API_URL} as ${WF_ADMIN_USER}..."
 SUCCESS="false"
 TIME_USED=0
-TIMEOUT=180
+TIMEOUT=280
 while [[ "${SUCCESS}" == "false" && $TIME_USED -lt ${TIMEOUT} ]]; do
   set +euo pipefail
   wf login ${PROFILE} -a ${WF_API_URL} --force -u ${WF_ADMIN_USER} -p ${WF_ADMIN_PASS} --non-interactive --verbose>/dev/null 2>&1
